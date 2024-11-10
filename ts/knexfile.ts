@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import path from 'node:path';
 import dirname from './dirname.js';
 
-dotenv.conf({ path: path.resolve(dirname, '.env') });
+dotenv.config({ path: path.resolve(dirname, '.env') });
 
 const config: Knex.Config = {
     client: 'pg',
