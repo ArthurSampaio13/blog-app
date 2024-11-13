@@ -1,5 +1,6 @@
-import type { Response } from 'express';
+import type { Response, Express } from 'express';
 
+import jwt from 'jsonwebtoken';
 import express from 'express';
 
 import type { ApiRequest  } from '../utils.js';
@@ -19,7 +20,7 @@ async function handleCreateAccount(
     const blogResponse = await req.ctx?.blog.create(user, account, avatar);
 
     if (!blogResponse) {
-        throw new Error('Erro ao buscar resposta!');
+        throw new Error('Invalid blog create response!');
     }
 
     res.status(200).json({
@@ -30,4 +31,32 @@ async function handleCreateAccount(
     });
 }
 
+async function handleLogin(
+    req: ApiRequest,
+    res: Response
+) : Promise<void> {
+    const { email, password } = req.body;
+
+    const loginResponse = await req.ctx?.user.login(email, password);
+
+    if (!loginResponse) {
+        throw new Error('Invalid login data');
+    }
+
+    const tokenData = {
+        userId: loginResponse.id,
+        utc_last_logon: new Date()
+    };
+    const token = jwt.sign(
+        tokenData,
+        process.env.HTTP_SECRET as string
+    );
+    res.status(200).json({ userId: loginResponse.id, token });
+}
+
 router.post('/create-account', buildHandler(handleCreateAccount));
+router.post('/login', buildHandler(handleLogin));
+
+export default function makeEndpoint (app: Express) {
+    app.use('/auth', router)
+}
