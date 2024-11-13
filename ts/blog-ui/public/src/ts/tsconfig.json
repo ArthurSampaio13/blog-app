@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "incremental": true,
+        "tsBuildInfoFile": "./.tsbuildinfo",
+        "target": "ES2017",
+        "module": "ES2022",
+        "moduleResolution": "Bundler",
+        "rootDir": "./",
+        "baseUrl": "./",
+        "outDir": "../../dist",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "noImplicitThis": true,
+        "useUnknownInCatchVariables": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "skipLibCheck": true,
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "paths": {
+            "/lib/zod3.23.8.js": [
+                "../../../../node_modules/zod"
+            ],
+
+            "/lib/purify3.1.6.js": [
+                "../../../../node_modules/@types/dompurify"
+            ]
+        }
+    }
+}
