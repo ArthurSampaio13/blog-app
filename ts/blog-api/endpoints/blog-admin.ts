@@ -54,6 +54,21 @@ async function getAvatarInputStatusHandler(
     res.status(200).json({ ok: true, ...avatarInputStatus });
 }
 
+async function getAvatarInputHandler(
+    req: ApiRequest,
+    res: Response
+) : Promise<void> {
+    if (!req.ctx || !req.account) {
+        throw new Error('UH Oh! Something veeeery odd is happening...')
+    }
+
+    const avatarInput = await req.ctx.avatar
+        .getInputByAccountAndId(req.account.id, req.params.avatarInputStatusId);
+
+    res.status(200).json({ ok: true, ...avatarInput });
+}
+
+
 async function createPostHandler(
     req: ApiRequest,
     res: Response
@@ -84,6 +99,9 @@ router.get(
     '/avatar-input-status/:avatarInputStatusId',
     buildHandler(getAvatarInputStatusHandler));
 
+router.get(
+    '/avatar-input/:avatarInputStatusId',
+    buildHandler(getAvatarInputHandler));
 
 export default function makeEndpoint (app: Express) {
     app.use(
