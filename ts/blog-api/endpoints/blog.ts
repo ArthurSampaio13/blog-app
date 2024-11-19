@@ -16,7 +16,7 @@ async function getPostHandler(
     res: Response
 ) : Promise<void> {
     if (!req.ctx || !req.account) {
-        throw new Error('erro ao pegar post')
+        throw new Error('erro ao buscar post')
     }
 
     const blogPost = await req.ctx
@@ -26,7 +26,26 @@ async function getPostHandler(
     res.status(200).json({ ok: true, ...blogPost });
 }
 
+async function getAllPostHandler(
+    req: ApiRequest,
+    res: Response
+) : Promise<void> {
+    if (!req.ctx || !req.account) {
+        throw new Error('erro ao buscar todos os posts')
+    }
+
+    const blogPosts = await req.ctx
+        .blog
+        .getAllPostsByAccountId(req.account.id);
+
+    res.status(200).json({
+        account: { title: req.account.title, id: req.account.id },
+        blogPosts
+    });
+}
+
 router.get('/post/:postId', buildHandler(getPostHandler));
+router.get('/posts', buildHandler(getAllPostHandler));
 
 export default function makeEndpoint (app: Express) {
     app.use(
