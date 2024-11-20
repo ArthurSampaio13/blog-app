@@ -1,8 +1,8 @@
-import type { Knex } from 'knex';
+import type { Knex } from "knex";
 
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 import path from 'node:path';
-import dirname from './dirname.js';
+import dirname from "./dirname.js";
 
 dotenv.config({ path: path.resolve(dirname, '.env') });
 

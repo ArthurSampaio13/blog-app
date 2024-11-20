@@ -3,7 +3,7 @@ import ytdl from '@distube/ytdl-core';
 
 class YouTubeClient {
     async downloadAudio(url: string, filepath: string): Promise<void> {
-        const cookies : { name: string; value: string }[] = [];
+        const cookies = [];
 
         const cookieKeys = [ 'HSID', 'SSID', 'SID' ];
         for (const key of cookieKeys) {

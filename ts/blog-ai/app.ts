@@ -10,7 +10,7 @@ const mode = process.argv[2];
 
 async function transcribeAudio(avatarInputId: string) : Promise<void> {
     const avatarInput = await context.avatar.getInputById(avatarInputId);
-    if (!avatarInput.avatar) { throw new Error('Algo deu errado..'); }
+    if (!avatarInput.avatar) { throw new Error('UH OH! Something very odd..'); }
 
     try {
         const account = await context.account
@@ -54,7 +54,7 @@ async function transcribeAudio(avatarInputId: string) : Promise<void> {
 
 async function createPost (avatarInputId: string) : Promise<void> {
     const avatarInput = await context.avatar.getInputById(avatarInputId);
-    if (!avatarInput.avatar) { throw new Error('Algo deu errado..'); }
+    if (!avatarInput.avatar) { throw new Error('UH OH! Something very odd..'); }
 
     try {
         const account = await context.account

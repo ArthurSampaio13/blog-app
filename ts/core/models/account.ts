@@ -11,7 +11,7 @@ export interface Account {
 export interface AccountCreate {
     title: string;
     link: string;
-    ai_api_key: string;
+    ai_api_key?: string;
 }
 
 class AccountModel extends BaseModel {
@@ -84,4 +84,3 @@ class AccountModel extends BaseModel {
 }
 
 export default AccountModel;
-

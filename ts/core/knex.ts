@@ -3,4 +3,4 @@ import knexConfig from '../knexfile.js';
 
 const knex = knexModule(knexConfig);
 
-export default knex;    
+export default knex;

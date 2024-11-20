@@ -23,7 +23,7 @@ async function initPostHandler(
     res: Response
 ) : Promise<void> {
     if (!req.ctx || !req.account) {
-        throw new Error('erro ao iniciar handler do post')
+        throw new Error('UH Oh! Something veeeery odd is happening...')
     }
 
     const youtubeUrl = req.body.youtube_url as string;
@@ -45,7 +45,7 @@ async function getAvatarInputStatusHandler(
     res: Response
 ) : Promise<void> {
     if (!req.ctx || !req.account) {
-        throw new Error('Erro ao pegar o status do avatar')
+        throw new Error('UH Oh! Something veeeery odd is happening...')
     }
 
     const avatarInputStatus = await req.ctx.avatar
@@ -59,7 +59,7 @@ async function getAvatarInputHandler(
     res: Response
 ) : Promise<void> {
     if (!req.ctx || !req.account) {
-        throw new Error('handler erro ao adicionar avatar')
+        throw new Error('UH Oh! Something veeeery odd is happening...')
     }
 
     const avatarInput = await req.ctx.avatar
@@ -68,13 +68,12 @@ async function getAvatarInputHandler(
     res.status(200).json({ ok: true, ...avatarInput });
 }
 
-
 async function createPostHandler(
     req: ApiRequest,
     res: Response
 ) : Promise<void> {
     if (!req.ctx || !req.account) {
-        throw new Error('erro ao criar postagem')
+        throw new Error('UH Oh! Something veeeery odd is happening...')
     }
 
     const blogPostData = {
@@ -96,7 +95,7 @@ async function postAvatarInputStatusRetryHandler(
     res: Response
 ) : Promise<void> {
     if (!req.ctx || !req.account) {
-        throw new Error('handler erro ao reprocessar input do avatar')
+        throw new Error('UH Oh! Something veeeery odd is happening...')
     }
 
     const avatarInput = await req.ctx.avatar
@@ -127,7 +126,6 @@ async function postAvatarInputStatusRetryHandler(
     req.ctx.redis.publishNoWait(redisEvent, avatarInput.id);
     res.status(200).json({ ok: true });
 }
-
 
 router.post('/init-post', buildHandler(initPostHandler));
 router.post('/create-post', buildHandler(createPostHandler));

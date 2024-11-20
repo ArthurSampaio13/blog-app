@@ -21,7 +21,7 @@ export function buildHandler(fn: Handler) {
                 return;
             }
 
-            res.status(500).json({ message: 'erro no servidor.' });
+            res.status(500).json({ message: 'uh oh! tenta depois...' });
         }
     };
 }

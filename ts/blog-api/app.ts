@@ -11,6 +11,8 @@ import {
 } from './utils.js';
 
 import makeAuthEndpoint from './endpoints/auth.js';
+import makeBlogAdminEndpoint from './endpoints/blog-admin.js';
+import makeBlogEndpoint from './endpoints/blog.js';
 
 const app = express();
 
@@ -25,18 +27,15 @@ process.on('unhandledRejection', fatalHandler);
 app.use(requestLogger);
 app.use(express.json());
 
-function allowCrossDomain(req: ApiRequest, res: Response, next: NextFunction): void {
+function allowCrossDomain(req: ApiRequest, res: Response, next: NextFunction) {
     res.header('Access-Control-Allow-Origin', req.headers.origin || '');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.header('Access-Control-Expose-Headers', 'Content-Type, Authorization');
     res.header('Access-Control-Allow-Credentials', "true");
 
-    if (req.method === 'OPTIONS') {
-        res.sendStatus(200);
-    } else {
-        next();
-    }
+    if (req.method === 'OPTIONS') { return res.sendStatus(200); }
+    next();
 }
 
 app.use(allowCrossDomain);
@@ -72,6 +71,8 @@ app.get(
     }));
 
 makeAuthEndpoint(app);
+makeBlogAdminEndpoint(app);
+makeBlogEndpoint(app);
 
 app.use((err: Error, _req: ApiRequest, res: Response) => {
     const statusCode = /Forbidden/.test(err.message) ? 403 : 500;

@@ -16,7 +16,7 @@ async function getPostHandler(
     res: Response
 ) : Promise<void> {
     if (!req.ctx || !req.account) {
-        throw new Error('erro ao buscar post')
+        throw new Error('UH Oh! Something veeeery odd is happening...')
     }
 
     const blogPost = await req.ctx
@@ -31,7 +31,7 @@ async function getAllPostHandler(
     res: Response
 ) : Promise<void> {
     if (!req.ctx || !req.account) {
-        throw new Error('erro ao buscar todos os posts')
+        throw new Error('UH Oh! Something veeeery odd is happening...')
     }
 
     const blogPosts = await req.ctx
