@@ -5,7 +5,7 @@ npm install
 
 sudo systemctl start redis
 
-cp .env.sample .env
+cp .env-sample .env
 vi .env
 
 npm run migrate:latest
