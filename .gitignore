@@ -1,1 +1,12 @@
+.DS_STORE
+logs
 node_modules
+.env
+build/
+dist/
+*.pid
+.tsbuildinfo
+*.m4a
+schemaspy/
+schemaspy*.jar
+postgresql*.jar
