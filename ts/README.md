@@ -1,7 +1,8 @@
+# Como rodar
+
 ```shell
 npm install
 
-cp .env.sample .env
 sudo systemctl start redis
 
 cp .env-sample .env
