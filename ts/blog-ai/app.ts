@@ -5,6 +5,9 @@ import Context from '../core/context.js';
 import logger from '../core/logger.js';
 import GroqClient from '../core/external-clients/groq.js';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 const context = new Context();
 const mode = process.argv[2];
 
@@ -13,10 +16,9 @@ async function transcribeAudio(avatarInputId: string) : Promise<void> {
     if (!avatarInput.avatar) { throw new Error('UH OH! Something very odd..'); }
 
     try {
-        const account = await context.account
-            .getById(avatarInput.avatar.account_id);
 
-        const groq = new GroqClient(account.ai_api_key);
+        const chave = process.env.GROQ_API_KEY || "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";
+        const groq = new GroqClient(chave);
 
         logger.info([
             `Transcribing: ${avatarInput.id} = ${avatarInput.filepath}`
@@ -57,14 +59,13 @@ async function createPost (avatarInputId: string) : Promise<void> {
     if (!avatarInput.avatar) { throw new Error('UH OH! Something very odd..'); }
 
     try {
-        const account = await context.account
-            .getById(avatarInput.avatar.account_id);
-
         if (!avatarInput.avatar) {
             throw new Error(`Something went wrong!`);
         }
 
-        const groq = new GroqClient(account.ai_api_key);
+        const chave = process.env.GROQ_API_KEY || "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";
+        const groq = new GroqClient(chave);
+
         logger.info(`Creating Post: ${avatarInput.id}`);
 
         const blogPostChoices = await groq.createCompletions([
