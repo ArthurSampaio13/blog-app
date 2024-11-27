@@ -9,7 +9,7 @@ import ajaxAdapter from '../../core/ajax-adapter.js';
 
 const $step1Form = document.querySelector('form.step-1') as HTMLFormElement;
 
-if (!$step1Form) { throw new Error('Something went wrong!'); }
+if (!$step1Form) { throw new Error('Algo deu errado!'); }
 
 interface YouTubeSearch {
     youtube_url: string;
@@ -20,7 +20,7 @@ const YouTubeSearch = z.object({
         const youtubeId = value.split('?v=')[1];
 
         return youtubeId && youtubeId.length >= 8;
-    }, { message: 'invalid youtube url maah' })
+    }, { message: 'URL invalida' })
 })
 
 function getStep1Values() : YouTubeSearch {

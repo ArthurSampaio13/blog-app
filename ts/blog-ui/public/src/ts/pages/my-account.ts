@@ -21,7 +21,7 @@ const account = accounts[0];
 
 const $subtitle = document.querySelector('#subtitle');
 if ($subtitle) { 
-    $subtitle.innerHTML = `Hello ${user.name}`;
+    $subtitle.innerHTML = `Olá, ${user.name}`;
 }
 
 const $createPostLink = document

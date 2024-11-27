@@ -63,28 +63,28 @@ function renderStatus(status: AvatarInputStatus) : void {
     }
 
     if (status.isDone) {
-        lines.push('<li>Audio download done ✅</li>');
-        lines.push('<li>Transcription Done ✅</li>');
-        lines.push('<li>Final text done ✅</li>');
+        lines.push('<li>Audio baixado ✅</li>');
+        lines.push('<li>Transcrição feita ✅</li>');
+        lines.push('<li>Texto final feito ✅</li>');
     } else {
         if (status.isAudioDone) {
-            lines.push('<li class="text-gray-400">Audio download done ✅</li>');
+            lines.push('<li class="text-gray-400">Audio baixado ✅</li>');
         } else {
-            lines.push('<li>Downloading audio...</li>')
+            lines.push('<li>Baixando audio...</li>')
         }
 
         if (status.isTranscriptionDone) {
-            lines.push('<li class="text-gray-400">Transcription done ✅</li>');
+            lines.push('<li class="text-gray-400">Transcrição feita ✅</li>');
         } else if (status.isAudioDone) {
-            lines.push('<li>Transcribing audio...</li>')
+            lines.push('<li>Transcrevendo audio...</li>')
         } else {
-            lines.push('<li class="text-gray-400">Waiting to transcribe</li>');
+            lines.push('<li class="text-gray-400">Esperando transcrição</li>');
         }
 
         if (status.isTranscriptionDone) {
-            lines.push('<li>Creating post...</li>')
+            lines.push('<li>Criando post...</li>')
         } else {
-            lines.push('<li class="text-gray-400">Waiting to create post</li>');
+            lines.push('<li class="text-gray-400">Esperando para criar o BLOG</li>');
         }
     }
 
