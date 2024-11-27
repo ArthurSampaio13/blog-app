@@ -17,7 +17,7 @@ async function transcribeAudio(avatarInputId: string) : Promise<void> {
 
     try {
 
-        const chave = process.env.GROQ_API_KEY || "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";
+        const chave = process.env.GROQ_API_KEY || "";
         const groq = new GroqClient(chave);
 
         logger.info([
@@ -63,7 +63,7 @@ async function createPost (avatarInputId: string) : Promise<void> {
             throw new Error(`Something went wrong!`);
         }
 
-        const chave = process.env.GROQ_API_KEY || "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";
+        const chave = process.env.GROQ_API_KEY || "";
         const groq = new GroqClient(chave);
 
         logger.info(`Creating Post: ${avatarInput.id}`);
